@@ -13,3 +13,7 @@ const concatenated$ = concat(
 );
 ```
 Once the third observable completes, the results emit.
+
+### CombineLatest
+Takes an arbitrary number of observables as params, subscribes to them and waits
+for **all of them to complete**, just to emit the combined results.
