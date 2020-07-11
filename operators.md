@@ -17,3 +17,6 @@ Once the third observable completes, the results emit.
 ### CombineLatest
 Takes an arbitrary number of observables as params, subscribes to them and waits
 for **all of them to complete**, just to emit the combined results.
+
+### SwitchMap
+Gets into the observable pipe and returns (switched to) another observable. In order to prevent it to trigger multiple times, might be a good idea to `cache()` it.
