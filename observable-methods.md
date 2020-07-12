@@ -1,7 +1,8 @@
-# Retry
+# Observable Methods
 
 
-### What is it?
+### Retry
+
 Is a method that we can chain at the end of an observable and that will retry the subscription to the observable until it gets a response that does not result in an observable error.
 
 ```javascript
