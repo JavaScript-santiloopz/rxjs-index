@@ -23,11 +23,19 @@ Gets into the observable pipe and returns (switched to) another observable. In o
 The main advantage of `switchMap` is that in case multiple values are emmited, `switchMap` takes care of unsubscribing from previous requests and, for example, keep alive only one `http` request at a time, releasing the backend from the overhead of many different http request.
 
 
-### Tap
+### tap
 Allows us to perform a certain operation each time the observable emits a value to it's subscribers. This should be used only for development and testing purposes, for instance, to log the value emmited in the console.
 
 ```javascript
 const obs$ = Observable.fromEvent(input, 'keyup').pipe(
 	.tap(value => console.log(value))
+);
+```
+
+### take
+Take a certain amount of observable reads and then cancel subscription.
+```javascript
+observable.pipe(
+	take(1),
 );
 ```
