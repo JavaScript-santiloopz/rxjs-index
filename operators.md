@@ -1,7 +1,17 @@
 # Operators
 
 
-### Concat
+
+### map
+Probably the most well-known functional programming operator out there, and Observable of course provides it. The map operator simply takes an Observable, and adds a transforming function that processes the output of the stream.
+
+### mapTo
+Same as map but transform to a static value defined by us, non dependent from the stream input.
+
+### filter
+Is basically a barrier that evaluates a boolean operation and let's the stream flow to continue or just cuts it, in case it evaluates to `false`.
+
+### concat
 Takes an arbitrary number of observables as parameters and subscribes to them
 **in order and sequentially**, meaning the next one won't be subscribed until the 
 currently subscribed observable **completes**.
@@ -14,11 +24,11 @@ const concatenated$ = concat(
 ```
 Once the third observable completes, the results emit.
 
-### CombineLatest
+### combineLatest
 Takes an arbitrary number of observables as params, subscribes to them and waits
 for **all of them to complete**, just to emit the combined results.
 
-### SwitchMap
+### switchMap
 Gets into the observable pipe and returns (switched to) another observable. In order to prevent it to trigger multiple times, might be a good idea to `cache()` it.  
 The main advantage of `switchMap` is that in case multiple values are emmited, `switchMap` takes care of unsubscribing from previous requests and, for example, keep alive only one `http` request at a time, releasing the backend from the overhead of many different http request.
 

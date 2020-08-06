@@ -2,7 +2,7 @@
 
 
 ### Motivation
-`Javascript` programming is essentially asynchornousm so it makes total sense to incorporate concepts of functional programming such as `inmutability` of data or `composability`.  
+`Javascript` programming is essentially asynchornous, so it makes total sense to incorporate concepts of functional programming such as `inmutability` of data or `composability`.  
 The notion that is missing and which is the heart of `Functional Reactive Programing` might very well be the `stream`. A `stream` is a sequence of values in time, as simple as that. Take for example the following `stream` of numeric values, where each value is issued every one second:
 ```
 ---- 0, 1, 2, 3 ,4 .... --->
