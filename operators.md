@@ -49,3 +49,17 @@ observable.pipe(
 	take(1),
 );
 ```
+
+### reduce
+```javascript
+var obs = Rx.Observable.interval(500).take(5);
+
+var reduced = obs.reduce((state, value) => state + value , 0);
+
+reduced.subscribe(total => console.log("total =" + total));
+```
+What is happening here is that given the `obs` observable, we create a second observable named `reduced`. Reduce emits a value when the stream `obs` closes and whose single value is the total sum of all elements in the stream. The output in the console is this:
+```javascript
+total = 10
+```
+So reduce emits the end total of the accumulation.
