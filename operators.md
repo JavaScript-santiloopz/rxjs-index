@@ -63,3 +63,18 @@ What is happening here is that given the `obs` observable, we create a second ob
 total = 10
 ```
 So reduce emits the end total of the accumulation.
+
+
+### scan
+You might be interested in the intermediate values of the `reduce` process, and might want to know what is the state of the observable after each element is reduced and react to that instead of only to the final result of the reduction operation. Especially because the reduced stream might never close!  
+This is what the `scan` operator does, and its at the heart of how we can build Redux-like applications using RxJs.
+```javascript
+var obs = Rx.Observable
+				.interval(500)
+				.take(5);
+
+var scanObs = obs
+				.scan((state, value) => state + value , 0);
+
+scanObs.subscribe(total => console.log(total));
+```
