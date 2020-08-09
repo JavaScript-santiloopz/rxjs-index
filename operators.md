@@ -33,9 +33,9 @@ The main advantage of `switchMap` is that in case multiple values are emmited, `
 
 ### reduce
 ```javascript
-var obs = Rx.Observable.interval(500).take(5);
+const obs = Rx.Observable.interval(500).take(5);
 
-var reduced = obs.reduce((state, value) => state + value , 0);
+const reduced = obs.reduce((state, value) => state + value , 0);
 
 reduced.subscribe(total => console.log("total =" + total));
 ```
@@ -49,11 +49,11 @@ So reduce emits the end total of the accumulation.
 You might be interested in the intermediate values of the `reduce` process, and might want to know what is the state of the observable after each element is reduced and react to that instead of only to the final result of the reduction operation. Especially because the reduced stream might never close!  
 This is what the `scan` operator does, and its at the heart of how we can build Redux-like applications using RxJs.
 ```javascript
-var obs = Rx.Observable
+const obs = Rx.Observable
 				.interval(500)
 				.take(5);
 
-var scanObs = obs
+const scanObs = obs
 				.scan((state, value) => state + value , 0);
 
 scanObs.subscribe(total => console.log(total));
@@ -65,6 +65,28 @@ Will print:
 3
 6
 10
+```
+
+### Share
+When we subscribe to an observable, it triggers the instantiation of a **separate** processing chain. The `share` operator allows us to share a single subscription of a processing chain with other subscribers.
+```javascript
+
+const obs = Rx.Observable.interval(500).take(5)
+            .do(i => console.log("obs value "+ i) )
+            .share();
+
+obs.subscribe(value => console.log("observer 1 received " + value));
+obs.subscribe(value => console.log("observer 2 received " + value));
+```
+Will output:
+```
+obs value 0
+observer 1 received 0
+observer 2 received 0
+
+obs value 1
+observer 1 received 1
+observer 2 received 1
 ```
 
 ### take
