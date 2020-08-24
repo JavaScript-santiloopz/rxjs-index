@@ -1,5 +1,16 @@
 # Observables
 
+### Implement a broadcast with a `Subject`
+`Subjects` implement both the `Observer` and the `Observable` interfaces, meaning that we can use them to both emit values and register subscribers.  
+`Subject` has one particularity that prevents us from using it to build `observable data services`: if we subscribe to it we won't get the last value, we will have to wait until some part of the app calls `next()`.  
+
+### `BehaviourSubject` to the rescue
+The solution for this is to use a BehaviorSubject. What this type of subject does it that it will return upon subscription the last value of the stream, or an initial state if no value was emitted yet.
+```typescript
+
+const behaviourSubject: BehaviorSubject<Type> = new BehaviorSubject(initialState);
+```
+
 ### Observables are not shared by default
 When we create a subscriber, we are setting up a whole new separate processing chain. The observable is just a definition, a `blueprint` of how a functional processing chain of operators should be set up from the source of the event up until the sink of the event, when that sink (the observer) is attached.
 
