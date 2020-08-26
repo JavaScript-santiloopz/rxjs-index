@@ -10,6 +10,10 @@ The solution for this is to use a BehaviorSubject. What this type of subject doe
 
 const behaviourSubject: BehaviorSubject<Type> = new BehaviorSubject(initialState);
 ```
+You can, at any time, retrieve the current value of a `BehaviourSubject`, with
+```typescript
+behaviourSubject.getValue();
+```
 
 ### Observables are not shared by default
 When we create a subscriber, we are setting up a whole new separate processing chain. The observable is just a definition, a `blueprint` of how a functional processing chain of operators should be set up from the source of the event up until the sink of the event, when that sink (the observer) is attached.
