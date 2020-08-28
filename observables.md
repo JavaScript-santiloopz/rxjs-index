@@ -3,6 +3,7 @@
 ### Implement a broadcast with a `Subject`
 `Subjects` implement both the `Observer` and the `Observable` interfaces, meaning that we can use them to both emit values and register subscribers.  
 `Subject` has one particularity that prevents us from using it to build `observable data services`: if we subscribe to it we won't get the last value, we will have to wait until some part of the app calls `next()`.  
+You can complete a `Subject` anytime by calling it's `complete()` method.
 
 ### `BehaviourSubject` to the rescue
 The solution for this is to use a BehaviorSubject. What this type of subject does it that it will return upon subscription the last value of the stream, or an initial state if no value was emitted yet.
